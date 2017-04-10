@@ -1,0 +1,39 @@
+﻿@model UserAwards.Models.PersonLinkAwardModel
+
+@{
+	ViewBag.Title = "Attach award";
+}
+
+<h2>Attach award</h2>
+
+@using (Html.BeginForm("AttachedAward", "PersonLinkAward", FormMethod.Post, new { role = "form" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+
+	<fieldset>
+		<legend>Attach award</legend>
+
+		<div class="form-group">
+			@Html.Label("Person name")
+			@Html.DropDownListFor(m => m.PersonId, (List<SelectListItem>)ViewBag.PersonModelListItem, "- Please select a Person -")
+		</div>
+
+		<div class="form-group">
+			@Html.Label("Award")
+			@Html.DropDownListFor(m => m.AwardId, (List<SelectListItem>)ViewBag.AwardModelListItem, "- Please select a Award -")
+		</div>
+
+		<p>
+			<input type="submit" value="Attach award" />
+		</p>
+	</fieldset>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

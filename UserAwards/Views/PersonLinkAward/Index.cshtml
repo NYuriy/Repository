@@ -1,0 +1,55 @@
+﻿@model IEnumerable<UserAwards.Models.PersonLinkAwardModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("New", "NewAttachAward")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonModelData.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonModelData.Birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonModelData.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwardModelData.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwardModelData.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonModelData.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonModelData.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonModelData.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwardModelData.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwardModelData.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { PersonId = item.PersonModelData.Id, AwardId = item.AwardModelData.Id })
+        </td>
+    </tr>
+}
+
+</table>
