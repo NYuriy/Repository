@@ -1,0 +1,38 @@
+﻿@{
+	ViewBag.Title = "_LayoutAward";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section scripts {
+	<style>
+		body {
+			background: darkgray; /* Цвет фона */
+			color: mediumblue; /* Цвет текста */
+		}
+	</style>
+}
+
+
+
+<div>
+	@if (ViewContext.RouteData.Values["controller"].ToString().ToLower() != "Award")
+	{
+		<ol class="breadcrumb">
+			<li>
+				@Html.ActionLink("Person Award", "Index", "PersonLinkAward")
+			</li>
+			<li>
+				@Html.ActionLink("Index", "Index", ViewContext.RouteData.Values["controller"].ToString())
+			</li>
+			@if (!string.IsNullOrEmpty(ViewContext.RouteData.Values["action"].ToString()) && ViewContext.RouteData.Values["action"].ToString() != "Index")
+			{
+				<li class="active">
+					@Html.ActionLink(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString())
+				</li>
+			}
+		</ol>
+	}
+	@RenderSection("scripts", required: false)
+	@RenderBody()
+</div>
