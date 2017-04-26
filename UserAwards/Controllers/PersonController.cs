@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -31,10 +32,26 @@ namespace UserAwards.Controllers
 		public FileStreamResult GetListPerson()
 		{
 			StringBuilder sb = new StringBuilder();
-			foreach (var item in PersonHelper.PersonModelList)
+			foreach (var personItem in PersonHelper.PersonModelList)
 			{
-				sb.Append(string.Format("{0}\r\n", item.Name));
+				var awardsIds =
+					PersonLinkAwardHelper.GetPersonLinkAwardList()
+						.Where(_ => _.PersonModelData.Id == personItem.Id)
+						.Select(_ => _.AwardModelData.Id)
+						.ToList();
+				if (awardsIds.Any())
+				{
+					foreach (var itemawardsId in awardsIds)
+					{
+						sb.Append(string.Format("{0} {1} \r\n", personItem.Name, AwardHelper.GetAwardById(itemawardsId).Title));
+					}
+				}
+				else
+				{
+					sb.Append(string.Format("{0} Наград нет \r\n", personItem.Name));
+				}
 			}
+
 			var fs = new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString()));
 			return File(fs, "text/csv");
 		}
@@ -42,6 +59,11 @@ namespace UserAwards.Controllers
 		[HttpPost]
 		public ActionResult Create(PersonModel personModel, HttpPostedFileBase image = null)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
 			try
 			{
 				if (image != null)
@@ -89,7 +111,11 @@ namespace UserAwards.Controllers
 		public FileContentResult GetImage(Guid id)
 		{
 			var entity = PersonHelper.GetPersonModelEntity(id);
-			return entity != null ? File(entity.ImageData, entity.ImageMimeType) : null;
+			if (entity != null && entity.ImageData != null && entity.ImageMimeType != null)
+			{
+				return File(entity.ImageData, entity.ImageMimeType);
+			}
+			return null;
 		}
 
 		public ActionResult Delete(Guid id)

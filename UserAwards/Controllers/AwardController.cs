@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Web;
 using System.Web.Mvc;
 using UserAwards.Models;
@@ -26,6 +27,11 @@ namespace UserAwards.Controllers
 		[HttpPost]
 		public ActionResult Create(AwardModel model, HttpPostedFileBase image = null)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
+
 			try
 			{
 				if (image != null)

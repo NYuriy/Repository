@@ -1,0 +1,33 @@
+﻿@model UserAwards.Models.AwardModel
+
+<div class="modal-body">
+
+	
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Title)
+	</div>
+
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Description)
+	</div>
+
+	<div class="row">
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<button type="submit" id="approve-btn"
+						class="btn btn-danger">
+					Ok
+				</button>
+			</div>
+		</div>
+
+</div>
+<script type="text/javascript">
+	$(function () {
+		$('#approve-btn').click(function () {
+			$('#modal-container').modal('hide');
+		});
+	});
+</script>
+

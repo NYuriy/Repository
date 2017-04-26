@@ -24,14 +24,8 @@ namespace UserAwards.Models.Helpers
 		public static PersonLinkAwardModel NewAttachAward()
 		{
 			var personLinkAwardModel = new PersonLinkAwardModel();
-			//{
-			//	PersonModelListItem = PersonModelListItem(),
-			//	AwardModelListItem = AwardModelListItem()
-			//};
 			return personLinkAwardModel;
 		}
-
-
 
 		/// <summary>
 		/// Gets award listItem.
@@ -48,7 +42,6 @@ namespace UserAwards.Models.Helpers
 		{
 			return PersonHelper.PersonModelList.Select(_ => new SelectListItem {Text = _.Name, Value = _.Id.ToString()}).ToList();
 		}
-
 
 		/// <summary>
 		/// Gets person link award list.

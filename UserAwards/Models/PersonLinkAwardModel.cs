@@ -37,6 +37,8 @@ namespace UserAwards.Models
 		/// <summary>
 		/// The Award id.
 		/// </summary>
+		[Remote("CheckAwardDuplicate", "PersonLinkAward", AdditionalFields = "PersonId", ErrorMessage = "Name is not valid.")]
 		public Guid AwardId { get; set; }
+
 	}
 }

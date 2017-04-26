@@ -6,6 +6,7 @@
 
 <h2>Attach award</h2>
 
+
 @using (Html.BeginForm("AttachedAward", "PersonLinkAward", FormMethod.Post, new { role = "form" }))
 {
 	@Html.AntiForgeryToken()
@@ -22,6 +23,7 @@
 		<div class="form-group">
 			@Html.Label("Award")
 			@Html.DropDownListFor(m => m.AwardId, (List<SelectListItem>)ViewBag.AwardModelListItem, "- Please select a Award -")
+			@Html.ValidationMessageFor(m => m.AwardId)
 		</div>
 
 		<p>
@@ -34,6 +36,7 @@
 	@Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
+@*@section scripts
+{
 	@Scripts.Render("~/bundles/jqueryval")
-}
+}*@

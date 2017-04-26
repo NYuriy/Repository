@@ -12,12 +12,17 @@ namespace UserAwards.Models
 		[HiddenInput(DisplayValue = false)]
 		public Guid Id { get; set; }
 
+		[Required(ErrorMessage = "Title Name должно быть установлено")]
+		[StringLength(50, ErrorMessage = "Длина строки должна быть не более 50 символов")]
 		[Display(Name = "Title Name")]
+		[RegularExpression(@"^[a-zA-Z0-9\s\-]+$", ErrorMessage = "Может включать только латинские символы, цифры, пробелы и дефисы.")]
 		public string Title { get; set; }
 
+		[StringLength(250, ErrorMessage = "Описание награды должно быть, не более 250 символов")]
 		[Display(Name = "Description")]
 		public string Description { get; set; }
 
+		[Required(ErrorMessage = "Изображение награды - обязательное")]
 		[Display(Name = "Image")]
 		public byte[] ImageData { get; set; }
 

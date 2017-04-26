@@ -66,7 +66,15 @@ namespace UserAwards.Models.Helpers
 		{
 			AwardModelList.Add(model);
 		}
-		
+
+		/// <summary>
+		/// Gets award by id.
+		/// </summary>
+		public static AwardModel GetAwardById(Guid awardId)
+		{
+			return AwardModelList.FirstOrDefault(_ => _.Id == awardId);
+		}
+
 		/// <summary>
 		/// The created new AwardModel entity.
 		/// </summary>
@@ -131,23 +139,5 @@ namespace UserAwards.Models.Helpers
 
 			return awardList;
 		}
-
-		//public static byte[] FileToByteArray(string fileName)
-		//{
-
-		//	//var fileData = FileToByteArray(@"d:\Mentoring\Task\UserAwards\UserAwards\UserAwards\Images\cold.png");
-		//	//var t = BitConverter.ToString(fileData);
-		//	byte[] fileContent = null;
-
-		//	FileStream fs = new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read);
-		//	BinaryReader binaryReader = new System.IO.BinaryReader(fs);
-
-		//	long byteLength = new System.IO.FileInfo(fileName).Length;
-		//	fileContent = binaryReader.ReadBytes((Int32)byteLength);
-		//	fs.Close();
-		//	fs.Dispose();
-		//	return fileContent;
-		//}
-
 	}
 }

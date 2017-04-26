@@ -28,6 +28,16 @@ namespace UserAwards.Models.Helpers
 		}
 
 		/// <summary>
+		/// Gets person by id.
+		/// </summary>
+		/// <param name="personId">The person id.</param>
+		/// <returns></returns>
+		public static PersonModel GetPersonById(Guid personId)
+		{
+			return PersonModelList.FirstOrDefault(_ => _.Id == personId);
+		}
+
+		/// <summary>
 		/// Gets personmodel entity.
 		/// </summary>
 		/// <param name="id">The id personModel.</param>
@@ -100,7 +110,7 @@ namespace UserAwards.Models.Helpers
 			{
 				new Person {Birthdate = DateTime.Parse("01/03/2000"), 
 								Id = Guid.Parse("7816ec31-2185-4e0f-a32c-64d970eff4d5"), 
-								Name = "Petrov P.P."},
+								Name = "Petrov1 P.P."},
 				new Person {Birthdate = DateTime.Parse("06/08/2004"), 
 								Id = Guid.Parse("7816ec31-2185-4e0f-a32c-64d970eff002"), 
 								Name = "Ivanov I.T."},

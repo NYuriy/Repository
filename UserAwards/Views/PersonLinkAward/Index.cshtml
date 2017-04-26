@@ -1,55 +1,89 @@
 ﻿@model IEnumerable<UserAwards.Models.PersonLinkAwardModel>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("New", "NewAttachAward")
+	@Html.ActionLink("New", "NewAttachAward")
 </p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonModelData.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonModelData.Birthdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PersonModelData.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AwardModelData.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AwardModelData.Description)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonModelData.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonModelData.Birthdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonModelData.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AwardModelData.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AwardModelData.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { PersonId = item.PersonModelData.Id, AwardId = item.AwardModelData.Id })
-        </td>
-    </tr>
-}
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(function () {
+			$('body').on('click', '.img-thumbnail',
+				function (e) {
+					e.preventDefault();
+					$(this).attr('data-target', '#modal-container');
+					$(this).attr('data-toggle', 'modal');
+				});
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function () {
+		// when the modal is closed
+		$('#modal-container').on('hidden.bs.modal', function () {
+			// remove the bs.modal data attribute from it
+			$(this).removeData('bs.modal');
+			// and empty the modal-content element
+			$('#modal-container .modal-content').empty();
+		});
+	});
+</script>
+
+<table>
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.PersonModelData.Name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.PersonModelData.Birthdate)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.PersonModelData.Age)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.AwardModelData.Title)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.AwardModelData.Description)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.AwardModelData.ImageData)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.PersonModelData.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PersonModelData.Birthdate)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PersonModelData.Age)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.AwardModelData.Title)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.AwardModelData.Description)
+			</td>
+			<td>
+				<img class="img-thumbnail" width="30" height="30" title="@item.AwardModelData.Title"
+					 src="@Url.Action("GetImage", "Award", new {item.AwardModelData.Id})"
+					 href="@Url.Action("ModalAction", "PersonLinkAward", new { item.AwardModelData.Id})" />
+			</td>
+		</tr>
+
+	}
 
 </table>
+

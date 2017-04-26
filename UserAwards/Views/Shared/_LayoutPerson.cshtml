@@ -3,7 +3,9 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section scripts {
+
+
+@section scriptStile {
 	<style>
 		body {
 			background: darkgrey; /* Цвет фона */
@@ -30,6 +32,5 @@
 			}
 		</ol>
 	}
-	@RenderSection("scripts", required: false)
 	@RenderBody()
 </div>

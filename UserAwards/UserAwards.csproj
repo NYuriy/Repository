@@ -51,6 +51,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -184,6 +185,7 @@
     <Compile Include="Controllers\AwardController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PersonLinkAwardController.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -337,6 +339,8 @@
     <Content Include="Views\PersonLinkAward\NewAttachAward.cshtml" />
     <Content Include="Views\Shared\_LayoutAward.cshtml" />
     <Content Include="Views\Shared\_LayoutPerson.cshtml" />
+    <Content Include="Views\Shared\_test.cshtml" />
+    <Content Include="Views\PersonLinkAward\ModalContent.cshtml" />
     <None Include="Web.MyConfigure.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
